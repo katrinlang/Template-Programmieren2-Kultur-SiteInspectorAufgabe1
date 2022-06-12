@@ -16,16 +16,16 @@ Implementieren Sie eine Klasse ```ImageSeries```, die alle Bilddateien (Frames) 
 Implementieren Sie zudem eine Klasse ```Frame```, die ein einzelnes frame verwaltet. Sie soll folgende Methoden enthalten:
 * Einen Constructor ```public Frame(BufferedImage image, BufferedImage grayscaleImage, BufferedImage tracing, BufferedImage overlay) {}```: Merkt sich die übergebenen BufferedImages. Wenn ```grayscaleImage``` ```null``` ist, wird ```computeGrayscaleImage()``` aufgerufen. Ist ```overlay``` ```null```, wird ```computeOverlay()``` aufgerufen. In jedem Fall wird am Ende mittels ```computeCombinedImage()``` das Resultatbild berechnet.
 * ```public BufferedImage getImage()```: Gibt das Originalfoto zurück
-* ```public BufferedImage getTracing()```: Gibt das Originalzeichnung zurück
+* ```public BufferedImage getTracing()```: Gibt die Originalzeichnung zurück
 * ```public BufferedImage getGrayscaleImage()```: Gibt das entsättigte Originalfoto  (im Farbmodus BufferedImage.TYPE_BYTE_GRAY) zurück
 * ```public BufferedImage getTracing()```: Gibt die invertierte Originalzeichnung mit als RGB-Bild mit Alpha-Kanal zurück
 * ```public BufferedImage getCombinedImage(boolean showTracing)```: Gibt das Resultatbild zurück. Ist ```showTracing``` true, soll das Originalfoto mit dem Overlay überblendet werden, andernfalls wird nur das Originalfoto dem Grauwertbild gegenübergestellt. Hat sich der Wert von ```showTracing``` seit dem letzten Aufruf verändert, so muss ```computeCombinedImage()``` erneut aufgerufen werden.
 
-Der Skalierungsfaktor bei der Kantendetektion ist ein Faktor, mit dem die berechneten Kantenwerte multipliziert werden sollen (nachdem die im Theorieteil beschriebene Skalierung auf Werte von 0-255 durchgeführt wurde). Alle Werte, die danach über 255 liegen, werden wieder auf 255 gesetzt. Dadurch wird es ermöglicht, auch schwache Kanten hervorzuheben.
+## BildVerarbeitung
 
-Es bietet sich zudem an, mindestens die folgenden Hilfsmethoden zu verwenden:
-* ```private void detectEdges()```: Führt die Kantendetektion mit dem letzten angegebenen Skalierungsfaktor durch (den Sie sich ja in ```getEdges``` sowieso merken müssen) und speichert das Ergebnis in einem ```BufferedImage``` (welches Sie dann in ```getEdges``` zurückgeben können).
-* ```private int getGrayscalePixel(BufferedImage image, int x, int y)```: Gibt den Pixel an den Koordinaten ```x``` und ```y``` im Bild ```image``` als Grauwert zurück. Der empfundene Grauwert eines RGB-Wertes kann nach der Formel: ```Grauwert = 0.2126*Rotwert + 0.7152*Grünwert + 0.0722*Blauwert``` berechnet werden. Hintegrund ist das durch die unterschiedlichen Rezeptoren im menschlichen Auge hervorgerufene Helligkeitsempfinden.
+* computeGrayscaleImage() soll ein Bild (im Farbmodus BufferedImage.TYPE_BYTE_GRAY) erzeugen, das das entsättigte Originalfoto enthält.
+Es bietet sich dabei an, die folgende Hilfsmethode zu verwenden:
+* ```private int brightness(BufferedImage image, int x, int y)```: Gibt das Pixel an den Koordinaten ```x``` und ```y``` im Bild ```image``` als Grauwert zurück. Der Grauwert soll dabei berechnet werden als das Maximum des Rot-, Grün- und Blau-Kanals. Dies entspricht der Helligkeitsdefinition des HSB (Hue-Saturation-Brightness) Farbmodells, die in unserem Fall die Struktur des Ockers am besten herausarbeitet.
 
 ### DICOMDiagnostics
 
