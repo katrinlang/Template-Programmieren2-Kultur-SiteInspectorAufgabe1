@@ -9,8 +9,9 @@ Implementieren Sie eine Klasse ```ImageSeries```, die alle Bilddateien (Frames) 
 ```ImageSeries``` soll folgende Methoden enthalten:
 * Einen Konstruktor ```ImageSeries(File[] files)```: Bekommt die einzulesenden Dateien. Merkt sich die Dateipfade, und liest alle Bilder aus ```files``` in eine interne Liste (am besten eine ```ArrayList``` - wir werden immer wieder über den Index auf die frames zugreifen) von ```Frame``` ein. Dabei besteht ein Datensatz für ein ```Frame``` aus mindestens je einem einzulesenden Foto und einer Zeichnung (s.u.). Per Konvention endet die dem Foto zugehörige Zeichnung auf dass Suffix *_tracing*. Heisst also das Foto z.B. *engraving-1.png*, so muss der Name der Zeichnung *engraving-1_tracing.png* lauten. Ist zu einem in ```files``` angegebenen Foto keine Zeichnung vorhanden, soll ein Fehler signalisiert werden. Optional können auch Grauwertbilder (mit dem Suffix *_grayscale*) und halbtransparente Überblendungen (mit dem Suffix *_overlay*) geladen werden. Da diese jedoch vom Programm erst erzeugt werden, sollen eventuelle Exceptions ignoriert und nur das entsprechende ```BufferedImage``` auf null gesetzt werden.
 
-Originalfoto und -Zeichnung:
+
 ![Originalfoto](Bilder/engraving-14.png) ![Originalzeichnung](Bilder/engraving-14_tracing.png)
+Inputs
 
 * ```public void writeFrames(int from, int to, boolean grayscale, boolean overlay, boolean combined)```: Speichert die Bilder aus den frames von ```from``` bis ```to``` in Bilddateien im *.png*-Format. Fall ```grayscale``` ```true``` ist, werden die entsättigten Fotos gespeichert (mit dem gleichen Namensschema wie oben beschrieben). Falls ```overlay``` ```true``` ist, werden die halbtransparente Überblendungen ausgegeben (wieder mit dem oben angegebenen Namensschema). Falls ```combined``` ```true``` ist, wird das Resultatbild mit dem Suffix *_combined* ausgegeben. Hier empfiehlt es sich sehr, zunächst sowohl in dieser Methode als auch in der ersten Implementation von ```Frame```, auf die Bildverarbeitung zu verzichten, und erst zu überprüfen, ob die eingelesenen frames korrekt als png gespeichert werden.
 
@@ -33,8 +34,8 @@ Es bietet sich dabei an, die folgende Hilfsmethode zu verwenden:
 * ```computeOverlay()``` soll zunächst das eingelesene Tracing invertieren, so dass ursprünglich helle Pixel dunkel und ursprünglich dunkle Pixel hell dargestellt werden. Das Ergebnis soll in einem Bild im Farbmodus ```BufferedImage.TYPE_INT_ARGB``` gespeichert werden, wobei der Alpha-Kanal so befüllt werden soll, dass ein Pixel um so transparenter ist, je niedriger der errechnete Grauwert ausfällt.
 * ```computeCombinedImage()``` soll das Grauwertbild dem Originalfoto in einem ```BufferedImage``` gegenüberstellen. Dabei sollen die Bilder, wenn Sie im Hochformat vorliegen, nebeneinander, wenn Sie im Querformat vorliegen, untereinander angezeigt werden. Das Originalfoto soll auf Wunsch mit dem Overlay überblendet werden. Dass Foto und Overlay nicht exakt übereinander zu liegen kommen, soll uns zunächst nicht weiter stören. Das werden wir in einer der Folgeaufgaben beheben.
 
-Combined:
 ![Combined](Bilder/engraving-14_combined.png)
+Resultat
 
 ## DICOMDiagnostics
 
