@@ -33,8 +33,11 @@ Implementieren Sie zuletzt eine Main-Klasse ```DICOMDiagnostics```, die nur die 
 
 Da automatische Tests mit nativen Bibliotheken schwer umzusetzen sind, wenn die Entwicklung mit unterschiedlichen Systemen stattfindet, und ich Ihnen wieder lauter Testfehler ersparen möchte, ersetzen Sie bitte wieder einfach die zwei Bilder ```Aufgabe1_frame.png``` sowie ```Aufgabe1_edge.png``` im Verzeichnis ```Bilder``` durch die Ausgaben Ihres Programms. Sie sollten dann hier erscheinen:
 
-Frame:
-![Frame](Bilder/Aufgabe1_frame.png)
+Grayscale:
+![Frame](Bilder/Aufgabe1_grayscale.png)
 
-Edge:
-![Edge](Bilder/Aufgabe1_edge.png)
+Overlay:
+![Edge](Bilder/Aufgabe1_overlay.png)
+
+Combined
+![Edge](Bilder/Aufgabe1_combined.png)
