@@ -7,7 +7,9 @@ Bei Ausgrabungen werden meist noch vor Ort Zeichnungen von den Fundstücken ange
 Implementieren Sie eine Klasse ```ImageSeries```, die alle Bilddateien (Frames) aus einer Dateiliste einliest und verwaltet. Lesen Sie bitte zunächst die Aufgabe bis zum Ende: Es ist sehr empfehlenswert, die Implementation nicht stur in dieser Reihenfolge durchzuführen, sonder stückweise ```ImageSeries``` und ```Frame``` parallel zu implementieren, so dass man immer testen kann, ob die bisher implementierte Funktionalität auch korrekt ist.
 
 ```ImageSeries``` soll folgende Methoden enthalten:
-* Einen Konstruktor ```ImageSeries(File[] files)```: Bekommt die einzulesenden Dateien. Merkt sich die Dateipfade, und liest alle Bilder aus ```files``` in eine interne Liste (am besten eine ```ArrayList``` - wir werden immer wieder über den Index auf die frames zugreifen) von ```Frame``` ein. Dabei besteht ein Datensatz für ein ```Frame``` aus mindestens je einem einzulesenden Foto und einer Zeichnung. Per Konvention endet die dem Foto zugehörige Zeichnung auf dass Suffix *_tracing*. Heisst also das Foto z.B. *engraving-1.png*, so muss der Name der Zeichnung *engraving-1_tracing.png* lauten. Ist zu einem in ```files``` angegebenen Foto keine Zeichnung vorhanden, soll ein Fehler signalisiert werden. Optional können auch Grauwertbilder (mit dem Suffix *_grayscale*) und halbtransparente Überblendungen (mit dem Suffix *_overlay*) geladen werden. Da diese jedoch vom Programm erst erzeugt werden, sollen eventuelle Exceptions ignoriert und nur das entsprechende ```BufferedImage``` auf null gesetzt werden.
+* Einen Konstruktor ```ImageSeries(File[] files)```: Bekommt die einzulesenden Dateien. Merkt sich die Dateipfade, und liest alle Bilder aus ```files``` in eine interne Liste (am besten eine ```ArrayList``` - wir werden immer wieder über den Index auf die frames zugreifen) von ```Frame``` ein. Dabei besteht ein Datensatz für ein ```Frame``` aus mindestens je einem einzulesenden Foto und einer Zeichnung (s.u.). Per Konvention endet die dem Foto zugehörige Zeichnung auf dass Suffix *_tracing*. Heisst also das Foto z.B. *engraving-1.png*, so muss der Name der Zeichnung *engraving-1_tracing.png* lauten. Ist zu einem in ```files``` angegebenen Foto keine Zeichnung vorhanden, soll ein Fehler signalisiert werden. Optional können auch Grauwertbilder (mit dem Suffix *_grayscale*) und halbtransparente Überblendungen (mit dem Suffix *_overlay*) geladen werden. Da diese jedoch vom Programm erst erzeugt werden, sollen eventuelle Exceptions ignoriert und nur das entsprechende ```BufferedImage``` auf null gesetzt werden.
+
+![Originalfoto](Bilder/engraving-14.png) ![Originalzeichnung](Bilder/engraving-14_tracing.png)
 
 * ```public void writeFrames(int from, int to, boolean grayscale, boolean overlay, boolean combined)```: Speichert die Bilder aus den frames von ```from``` bis ```to``` in Bilddateien im *.png*-Format. Fall ```grayscale``` ```true``` ist, werden die entsättigten Fotos gespeichert (mit dem gleichen Namensschema wie oben beschrieben). Falls ```overlay``` ```true``` ist, werden die halbtransparente Überblendungen ausgegeben (wieder mit dem oben angegebenen Namensschema). Falls ```combined``` ```true``` ist, wird das Resultatbild mit dem Suffix *_combined* ausgegeben. Hier empfiehlt es sich sehr, zunächst sowohl in dieser Methode als auch in der ersten Implementation von ```Frame```, auf die Bildverarbeitung zu verzichten, und erst zu überprüfen, ob die eingelesenen frames korrekt als png gespeichert werden.
 
@@ -37,10 +39,10 @@ Nutzen Sie die Main-Klasse ```SiteAnalysis```, die die Beispieldateien als ```Im
 Da automatische Tests mit Bildern schwer umzusetzen sind, und ich Ihnen wieder lauter Testfehler ersparen möchte, ersetzen Sie bitte wieder einfach die drei Bilder ```Aufgabe1_grayscale.png```, ```Aufgabe1_overlay.png```, sowie ```Aufgabe1_combined.png``` im Verzeichnis ```Bilder``` durch die Ausgaben Ihres Programms. Sie sollten dann hier erscheinen:
 
 Grayscale:
-![Frame](Bilder/Aufgabe1_grayscale.png)
+![Grayscale](Bilder/Aufgabe1_grayscale.png)
 
 Overlay:
-![Edge](Bilder/Aufgabe1_overlay.png)
+![Overlay](Bilder/Aufgabe1_overlay.png)
 
 Combined
-![Edge](Bilder/Aufgabe1_combined.png)
+![Combined](Bilder/Aufgabe1_combined.png)
