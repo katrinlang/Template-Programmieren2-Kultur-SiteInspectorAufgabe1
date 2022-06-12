@@ -6,7 +6,7 @@ public class SiteInspector {
 
     public static void main(String[] args) {
 
-        File[] imageFiles= new File[12];
+        File[] imageFiles= new File[16];
 
         for(int i= 1; i<=imageFiles.length; i++){
             try{
