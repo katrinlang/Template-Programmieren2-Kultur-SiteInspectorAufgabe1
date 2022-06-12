@@ -34,7 +34,7 @@ Es bietet sich dabei an, die folgende Hilfsmethode zu verwenden:
 
 Nutzen Sie die Main-Klasse ```SiteAnalysis```, die die Beispieldateien als ```ImageSeries``` einliest, um von einem frame Ihrer Wahl sowohl das entsättigte Originalbild als auch das Overlay, sowie das Resultatbild inkl. Overlay auszugeben. Bitte committen Sie nicht die gesamte erzeugte Bilderreihe!
 
-Da automatische Tests mit nativen Bibliotheken schwer umzusetzen sind, wenn die Entwicklung mit unterschiedlichen Systemen stattfindet, und ich Ihnen wieder lauter Testfehler ersparen möchte, ersetzen Sie bitte wieder einfach die drei Bilder ```Aufgabe1_grayscale.png```, ```Aufgabe1_overlay.png```, sowie ```Aufgabe1_combined.png``` im Verzeichnis ```Bilder``` durch die Ausgaben Ihres Programms. Sie sollten dann hier erscheinen:
+Da automatische Tests mit Bildern schwer umzusetzen sind, und ich Ihnen wieder lauter Testfehler ersparen möchte, ersetzen Sie bitte wieder einfach die drei Bilder ```Aufgabe1_grayscale.png```, ```Aufgabe1_overlay.png```, sowie ```Aufgabe1_combined.png``` im Verzeichnis ```Bilder``` durch die Ausgaben Ihres Programms. Sie sollten dann hier erscheinen:
 
 Grayscale:
 ![Frame](Bilder/Aufgabe1_grayscale.png)
