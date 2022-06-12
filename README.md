@@ -20,13 +20,13 @@ Implementieren Sie zudem eine Klasse ```Frame```, die ein einzelnes frame verwal
 
 * ```public BufferedImage getImage()```: Gibt das Originalfoto zurück
 * ```public BufferedImage getTracing()```: Gibt die Originalzeichnung zurück
-* ```public BufferedImage getGrayscaleImage()```: Gibt das entsättigte Originalfoto  (im Farbmodus BufferedImage.TYPE_BYTE_GRAY) zurück
+* ```public BufferedImage getGrayscaleImage()```: Gibt das entsättigte Originalfoto zurück
 * ```public BufferedImage getOverlay()```: Gibt die invertierte Originalzeichnung mit als RGB-Bild mit Alpha-Kanal zurück
 * ```public BufferedImage getCombinedImage(boolean showTracing)```: Gibt das Resultatbild zurück. Ist ```showTracing``` true, soll das Originalfoto mit dem Overlay überblendet werden, andernfalls wird nur das Originalfoto dem Grauwertbild gegenübergestellt. Hat sich der Wert von ```showTracing``` seit dem letzten Aufruf verändert, so muss ```computeCombinedImage()``` erneut aufgerufen werden.
 
 ### Bildverarbeitung
 
-* ```computeGrayscaleImage()``` soll ein Bild (im Farbmodus BufferedImage.TYPE_BYTE_GRAY) erzeugen, das das entsättigte Originalfoto enthält.
+* ```computeGrayscaleImage()``` soll ein Bild (im Farbmodus BufferedImage.TYPE_INT_RGB) erzeugen, das das entsättigte Originalfoto enthält.
 Es bietet sich dabei an, die folgende Hilfsmethode zu verwenden:
 * ```private int brightness(BufferedImage image, int x, int y)```: Gibt das Pixel an den Koordinaten ```x``` und ```y``` im Bild ```image``` als Grauwert zurück. Der Grauwert soll dabei berechnet werden als das Maximum des Rot-, Grün- und Blau-Kanals. Dies entspricht der Helligkeitsdefinition des HSB (Hue-Saturation-Brightness) Farbmodells, die in unserem Fall die Struktur des Ockers am besten herausarbeitet.
 * ```computeOverlay()``` soll zunächst das eingelesene Tracing invertieren, so dass ursprünglich helle Pixel dunkel und ursprünglich dunkle Pixel hell dargestellt werden. Das Ergebnis soll in einem Bild im Farbmodus ```BufferedImage.TYPE_INT_ARGB``` gespeichert werden, wobei der Alpha-Kanal so befüllt werden soll, dass ein Pixel um so transparenter ist, je niedriger der errechnete Grauwert ausfällt.
