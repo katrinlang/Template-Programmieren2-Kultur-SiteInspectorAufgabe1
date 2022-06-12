@@ -46,5 +46,5 @@ Grayscale:
 Overlay:
 ![Overlay](Bilder/Aufgabe1_overlay.png)
 
-Combined
+Combined:
 ![Combined](Bilder/Aufgabe1_combined.png)
