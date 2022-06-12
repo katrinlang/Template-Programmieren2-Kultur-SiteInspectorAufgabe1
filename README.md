@@ -21,7 +21,7 @@ Implementieren Sie zudem eine Klasse ```Frame```, die ein einzelnes frame verwal
 * ```public BufferedImage getImage()```: Gibt das Originalfoto zurück
 * ```public BufferedImage getTracing()```: Gibt die Originalzeichnung zurück
 * ```public BufferedImage getGrayscaleImage()```: Gibt das entsättigte Originalfoto zurück
-* ```public BufferedImage getOverlay()```: Gibt die invertierte Originalzeichnung mit als RGB-Bild mit Alpha-Kanal zurück
+* ```public BufferedImage getOverlay()```: Gibt die invertierte Originalzeichnung als RGB-Bild mit Alpha-Kanal zurück
 * ```public BufferedImage getCombinedImage(boolean showTracing)```: Gibt das Resultatbild zurück. Ist ```showTracing``` true, soll das Originalfoto mit dem Overlay überblendet werden, andernfalls wird nur das Originalfoto dem Grauwertbild gegenübergestellt. Hat sich der Wert von ```showTracing``` seit dem letzten Aufruf verändert, so muss ```computeCombinedImage()``` erneut aufgerufen werden.
 
 ### Bildverarbeitung
