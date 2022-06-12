@@ -13,10 +13,13 @@ Implementieren Sie eine Klasse ```ImageSeries```, die alle Bilddateien (Frames) 
 
 ### Frame: Ein Einzelbild
 
-Implementieren Sie zudem eine Klasse ```DICOMFrame```, die ein einzelnes frame verwaltet. Sie soll folgende Methoden enthalten:
-* Einen Constructor ```public DICOMFrame(BufferedImage image)```: Merkt sich das übergebene BufferedImage.
-* ```public BufferedImage getImage()```: Gibt das Bild des frames zurück
-* ```public BufferedImage getEdges(double brightness)```: Gibt ein ```BufferedImage``` (im Farbmodus ```BufferedImage.TYPE_BYTE_GRAY```) mit den Ergebnissen der Kantendetektion mit dem Skalierungsfaktor ```brightness``` auf dem Bild des frames aus. Falls noch keine Katendetektion durchgeführt wurde oder die letzte Kantendetektion mit einem anderen Skalierungsfaktor durchgeführt wurde, wird zunächst die Kantendetektion mit dem Skalierungsfaktor ```brightness``` durchgeführt. Sonst wird das Ergebnis der letzten Kantendetektion zurückgegeben (die Kantendetektion dauert einen Moment, sie sollte also nicht unnötig mehrmals durchgeführt werden).
+Implementieren Sie zudem eine Klasse ```Frame```, die ein einzelnes frame verwaltet. Sie soll folgende Methoden enthalten:
+* Einen Constructor ```public Frame(BufferedImage image, BufferedImage grayscaleImage, BufferedImage tracing, BufferedImage overlay) {}```: Merkt sich die übergebenen BufferedImages. Wenn ```grayscaleImage``` ```null``` ist, wird ```computeGrayscaleImage()``` aufgerufen. Ist ```overlay``` ```null```, wird ```computeOverlay()``` aufgerufen. In jedem Fall wird am Ende mittels ```computeCombinedImage()``` das Resultatbild berechnet.
+* ```public BufferedImage getImage()```: Gibt das Originalfoto zurück
+* ```public BufferedImage getTracing()```: Gibt das Originalzeichnung zurück
+* ```public BufferedImage getGrayscaleImage()```: Gibt das entsättigte Originalfoto  (im Farbmodus BufferedImage.TYPE_BYTE_GRAY) zurück
+* ```public BufferedImage getTracing()```: Gibt die invertierte Originalzeichnung mit als RGB-Bild mit Alpha-Kanal zurück
+* ```public BufferedImage getCombinedImage(boolean showTracing)```: Gibt das Resultatbild zurück. Ist ```showTracing``` true, soll das Originalfoto mit dem Overlay überblendet werden, andernfalls wird nur das Originalfoto dem Grauwertbild gegenübergestellt. Hat sich der Wert von ```showTracing``` seit dem letzten Aufruf verändert, so muss ```computeCombinedImage()``` erneut aufgerufen werden.
 
 Der Skalierungsfaktor bei der Kantendetektion ist ein Faktor, mit dem die berechneten Kantenwerte multipliziert werden sollen (nachdem die im Theorieteil beschriebene Skalierung auf Werte von 0-255 durchgeführt wurde). Alle Werte, die danach über 255 liegen, werden wieder auf 255 gesetzt. Dadurch wird es ermöglicht, auch schwache Kanten hervorzuheben.
 
