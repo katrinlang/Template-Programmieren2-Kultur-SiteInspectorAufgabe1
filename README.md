@@ -23,15 +23,17 @@ Implementieren Sie zudem eine Klasse ```Frame```, die ein einzelnes frame verwal
 
 ### BildVerarbeitung
 
-* computeGrayscaleImage() soll ein Bild (im Farbmodus BufferedImage.TYPE_BYTE_GRAY) erzeugen, das das entsättigte Originalfoto enthält.
+* ```computeGrayscaleImage()``` soll ein Bild (im Farbmodus BufferedImage.TYPE_BYTE_GRAY) erzeugen, das das entsättigte Originalfoto enthält.
 Es bietet sich dabei an, die folgende Hilfsmethode zu verwenden:
 * ```private int brightness(BufferedImage image, int x, int y)```: Gibt das Pixel an den Koordinaten ```x``` und ```y``` im Bild ```image``` als Grauwert zurück. Der Grauwert soll dabei berechnet werden als das Maximum des Rot-, Grün- und Blau-Kanals. Dies entspricht der Helligkeitsdefinition des HSB (Hue-Saturation-Brightness) Farbmodells, die in unserem Fall die Struktur des Ockers am besten herausarbeitet.
+* ```computeOverlay()``` soll zunächst das eingelesene Tracing invertieren, so dass ursprünglich helle Pixel dunkel und ursprünglich dunkle Pixel hell dargestellt werden. Das Ergebnis soll in einem Bild im Farbmodus ```BufferedImage.TYPE_INT_ARGB``` gespeichert werden, wobei der Alpha-Kanal so befüllt werden soll, dass ein Pixel um so transparenter ist, je niedriger der errechnete Grauwert ausfällt.
+* ```computeCombinedImage()``` soll das Grauwertbild dem Originalfoto in einem ```BufferedImage``` gegenüberstellen. Dabei sollen die Bilder, wenn Sie im Hochformat vorliegen, nebeneinander, wenn Sie im Querformat vorliegen, untereinander angezeigt werden. Das Originalfoto soll auf Wunsch mit dem Overlay überblendet werden.
 
-### DICOMDiagnostics
+## DICOMDiagnostics
 
-Implementieren Sie zuletzt eine Main-Klasse ```DICOMDiagnostics```, die nur die Datei ```data/angiogram1.DCM``` als ein ```DICOMImage``` einliest und von einem frame Ihrer Wahl sowohl das Originalbild als auch das Ergebnis der Kantendetektion mit einer brightness Ihrer Wahl (es sollten aber Kanten darauf erkennbar sein - und zwar von den Blutgefäßen, nicht einfach nur die umlaufende Kante des Bildes) ausgibt.
+Nutzen Sie die Main-Klasse ```SiteAnalysis```, die die Beispieldateien als ```ImageSeries``` einliest, um von einem frame Ihrer Wahl sowohl das entsättigte Originalbild als auch das Overlay, sowie das Resultatbild inkl. Overlay auszugeben. Bitte committen Sie nicht die gesamte erzeugte Bilderreihe!
 
-Da automatische Tests mit nativen Bibliotheken schwer umzusetzen sind, wenn die Entwicklung mit unterschiedlichen Systemen stattfindet, und ich Ihnen wieder lauter Testfehler ersparen möchte, ersetzen Sie bitte wieder einfach die zwei Bilder ```Aufgabe1_frame.png``` sowie ```Aufgabe1_edge.png``` im Verzeichnis ```Bilder``` durch die Ausgaben Ihres Programms. Sie sollten dann hier erscheinen:
+Da automatische Tests mit nativen Bibliotheken schwer umzusetzen sind, wenn die Entwicklung mit unterschiedlichen Systemen stattfindet, und ich Ihnen wieder lauter Testfehler ersparen möchte, ersetzen Sie bitte wieder einfach die drei Bilder ```Aufgabe1_grayscale.png```, ```Aufgabe1_overlay.png```, sowie ```Aufgabe1_combined.png``` im Verzeichnis ```Bilder``` durch die Ausgaben Ihres Programms. Sie sollten dann hier erscheinen:
 
 Grayscale:
 ![Frame](Bilder/Aufgabe1_grayscale.png)
